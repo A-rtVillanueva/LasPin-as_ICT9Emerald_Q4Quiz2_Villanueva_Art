@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ2_VILLANUEVA</title>
+<style>
+
+.intro {
+    text-align: center;
+}
+img {
+    border-color: aqua; border-style: solid; border-width: 15px; border-radius: 8px;
+}
+.butt {
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+   <div class="intro">
+    <h1 style="background-color: aqua; margin-right: 200px; margin-left: 200px;">Score Analyzer</h1>
+    <details> 
+        <summary> Click <Menu></Menu> </summmary> 
+        <i> Enter your grades in the following subjects.</i> 
+        </details> 
+    </div>
+    <div style="display: flex; justify-content: center; gap: 20px;">
+        <div style="text-align: center;">
+            <img src="SC.png" alt="Science" width="300px" height="450px">
+          <br>
+          <input type="number" id="Gri1" placeholder="0.01 to 100 only">
+        </div>
+      
+        <div style="text-align: center;">
+            <img src="EN.png" alt="English" width="300px" height="450px">
+          <br>
+          <input type="number" id="Gri2" placeholder="0.01 to 100 only">
+        </div>
+      
+        <div style="text-align: center;">
+            <img src="MT.jpeg" alt="Math" width="300px" height="450px">
+          <br>
+          <input type="number" id="Gri3" placeholder="0.01 to 100 only">
+        </div>
+    </div>
+    
+    <script>
+        function GetAve(){
+            let Gra1 = parseFloat(document.getElementById("Gri1").value);
+            let Gra2 = parseFloat(document.getElementById("Gri2").value);
+            let Gra3 = parseFloat(document.getElementById("Gri3").value);
+        
+            // Check for invalid input
+            if ([Gra1, Gra2, Gra3].some(val => isNaN(val) || val < 0.01 || val > 100)) {
+                document.getElementById("result").innerHTML = "Invalid input! Please enter numbers between 0.01 and 100.";
+                return;
+            }
+        
+            let Ave = (Gra1 + Gra2 + Gra3) / 3;
+            let Rem;
+        
+            switch (true) {
+                case (Ave >= 94 && Ave <= 100):
+                    Rem = "Excellent";
+                    break;
+                case (Ave >= 87 && Ave < 94):
+                    Rem = "Above Satisfactory";
+                    break;
+                case (Ave >= 80 && Ave < 87):
+                    Rem = "Satisfactory";
+                    break;
+                case (Ave >= 75 && Ave < 80):
+                    Rem = "Needs Improvement";
+                    break;
+                case (Ave >= 70 && Ave < 75):
+                    Rem = "Poor";
+                    break;
+                default:
+                    Rem = "Failing Grade";
+            }
+        
+            document.getElementById("result").innerHTML = "Your Average is " + Ave.toFixed(2) + " – " + Rem;
+        }
+        </script>
+    <h2 id="result"></h2>
+
+    <br>
+    <div class="butt">
+    <button style="background-color: aqua; border-radius: 10px; border-style: solid; border-color: aqua; width: 135px; height: 75px; font-size: larger; font-family: Arial, Helvetica, sans-serif;" onclick="GetAve()">Compute</button>
+    </div>
+</body>
+
+</html>
